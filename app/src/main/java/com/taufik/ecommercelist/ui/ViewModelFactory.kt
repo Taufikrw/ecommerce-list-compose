@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.taufik.ecommercelist.data.ProductRepository
 import com.taufik.ecommercelist.data.di.Injection
-import com.taufik.ecommercelist.ui.screen.ProductViewModel
+import com.taufik.ecommercelist.ui.screen.home.HomeViewModel
 
 class ViewModelFactory(private val repository: ProductRepository): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ProductViewModel::class.java)) {
-            return ProductViewModel(repository) as T
+        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
+            return HomeViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
