@@ -27,6 +27,7 @@ import com.taufik.ecommercelist.ui.navigation.NavigationItem
 import com.taufik.ecommercelist.ui.navigation.Screen
 import com.taufik.ecommercelist.ui.screen.detail.DetailScreen
 import com.taufik.ecommercelist.ui.screen.home.HomeScreen
+import com.taufik.ecommercelist.ui.screen.profile.ProfileScreen
 import com.taufik.ecommercelist.ui.theme.ECommerceListTheme
 
 @Composable
@@ -56,7 +57,7 @@ fun ECommerceApp(
                 // WishlistScreen()
             }
             composable(Screen.Profile.route) {
-                // ProfileScreen()
+                ProfileScreen()
             }
             composable(
                 route = Screen.DetailProduct.route,

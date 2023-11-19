@@ -2,6 +2,8 @@ package com.taufik.ecommercelist.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import com.taufik.ecommercelist.data.model.Profile
+import com.taufik.ecommercelist.data.model.ProfileData
 import com.taufik.ecommercelist.data.remote.response.ProductsItem
 import com.taufik.ecommercelist.data.remote.retrofit.ApiService
 import com.taufik.ecommercelist.ui.common.State
@@ -32,6 +34,10 @@ class ProductRepository(
             Log.e("Exception: ", e.message.toString())
             null
         }
+    }
+
+    fun getProfile(): Profile {
+        return ProfileData.data
     }
 
     companion object {

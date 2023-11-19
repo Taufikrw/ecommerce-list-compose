@@ -7,6 +7,7 @@ import com.taufik.ecommercelist.data.ProductRepository
 import com.taufik.ecommercelist.data.di.Injection
 import com.taufik.ecommercelist.ui.screen.detail.DetailViewModel
 import com.taufik.ecommercelist.ui.screen.home.HomeViewModel
+import com.taufik.ecommercelist.ui.screen.profile.ProfileViewModel
 
 class ViewModelFactory(private val repository: ProductRepository): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -15,6 +16,8 @@ class ViewModelFactory(private val repository: ProductRepository): ViewModelProv
             return HomeViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
             return DetailViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
+            return ProfileViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
