@@ -17,12 +17,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.taufik.ecommercelist.ui.navigation.NavigationItem
 import com.taufik.ecommercelist.ui.navigation.Screen
+import com.taufik.ecommercelist.ui.screen.detail.DetailScreen
 import com.taufik.ecommercelist.ui.screen.home.HomeScreen
 import com.taufik.ecommercelist.ui.theme.ECommerceListTheme
 
@@ -43,13 +46,29 @@ fun ECommerceApp(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    navigationToDetail = { id ->
+                        navController.navigate(Screen.DetailProduct.createRoute(id))
+                    }
+                )
             }
             composable(Screen.Wishlist.route) {
                 // WishlistScreen()
             }
             composable(Screen.Profile.route) {
                 // ProfileScreen()
+            }
+            composable(
+                route = Screen.DetailProduct.route,
+                arguments = listOf(navArgument("id") { type = NavType.IntType })
+            ) {
+                val id = it.arguments?.getInt("id") ?: -1
+                DetailScreen(
+                    id = id,
+                    navigateBack = {
+                        navController.navigateUp()
+                    },
+                )
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.taufik.ecommercelist.ui.screen.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -36,7 +37,8 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(
         factory = ViewModelFactory.getInstance(LocalContext.current)
-    )
+    ),
+    navigationToDetail: (Int) -> Unit
 ) {
     viewModel.uiState.collectAsState(initial = State.Loading).value.let {
         when (it) {
@@ -49,7 +51,8 @@ fun HomeScreen(
             is State.Success -> {
                 ProductContent(
                     productsItem = it.data,
-                    modifier = modifier
+                    modifier = modifier,
+                    navigationToDetail = navigationToDetail,
                 )
             }
 
@@ -63,7 +66,8 @@ fun HomeScreen(
 @Composable
 fun ProductContent(
     productsItem: List<ProductsItem>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigationToDetail: (Int) -> Unit
 ) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
@@ -75,7 +79,10 @@ fun ProductContent(
             ProductItem(
                 title = product.title,
                 image = product.thumbnail,
-                desc = product.description
+                desc = product.description,
+                modifier = Modifier.clickable {
+                    navigationToDetail(product.id)
+                }
             )
         }
     }

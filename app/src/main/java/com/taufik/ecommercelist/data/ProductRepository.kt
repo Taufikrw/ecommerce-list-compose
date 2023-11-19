@@ -24,6 +24,16 @@ class ProductRepository(
         }
     }
 
+    suspend fun getDetailProduct(id: Int): ProductsItem? {
+        return try {
+            val response = apiService.getDetailProduct(id)
+            response
+        } catch (e: Exception) {
+            Log.e("Exception: ", e.message.toString())
+            null
+        }
+    }
+
     companion object {
         @Volatile
         private var instance: ProductRepository? = null
