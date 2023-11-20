@@ -45,9 +45,7 @@ fun DetailScreen(
     viewModel.uiState.collectAsState(initial = State.Loading).value.let {
         when (it) {
             is State.Loading -> {
-                LaunchedEffect(Unit) {
-                    viewModel.getDetailProduct(id)
-                }
+                viewModel.getDetailProduct(id)
             }
 
             is State.Success -> {
