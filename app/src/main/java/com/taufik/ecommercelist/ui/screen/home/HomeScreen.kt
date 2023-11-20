@@ -1,5 +1,7 @@
 package com.taufik.ecommercelist.ui.screen.home
 
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -75,6 +77,7 @@ fun HomeScreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ProductContent(
     productsItem: List<ProductsItem>,
@@ -100,9 +103,11 @@ fun ProductContent(
                     title = product.title,
                     image = product.thumbnail,
                     desc = product.description,
-                    modifier = Modifier.clickable {
-                        navigationToDetail(product.id)
-                    }
+                    modifier = Modifier
+                        .animateItemPlacement(tween(durationMillis = 100))
+                        .clickable {
+                            navigationToDetail(product.id)
+                        }
                 )
             }
         }
@@ -142,7 +147,6 @@ fun CustomSearchBar(
             .fillMaxWidth()
             .heightIn(min = 48.dp)
     ) {
-
     }
 }
 
