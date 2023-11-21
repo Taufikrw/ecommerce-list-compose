@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -69,9 +72,11 @@ fun ProductContent(
             query = query,
             onChangeQuery = viewModel::search
         )
-        LazyColumn(
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(160.dp),
             contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = modifier
                 .testTag("ProductList")
         ) {
@@ -79,7 +84,8 @@ fun ProductContent(
                 ProductItem(
                     title = product.product.title,
                     image = product.product.thumbnail,
-                    desc = product.product.description,
+                    price = product.product.price,
+                    rating = product.product.rating,
                     modifier = Modifier
                         .animateItemPlacement(tween(durationMillis = 100))
                         .clickable {

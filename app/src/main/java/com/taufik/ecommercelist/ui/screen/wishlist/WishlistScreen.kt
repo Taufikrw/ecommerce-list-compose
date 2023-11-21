@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -41,11 +42,15 @@ fun WishlistScreen(
             }
 
             is State.Success -> {
-                WishlistContent(
-                    productsItem = it.data,
-                    modifier = modifier,
-                    navigationToDetail = navigationToDetail,
-                )
+                if (it.data.isEmpty()) {
+                    Text(text = "KOSONG")
+                } else {
+                    WishlistContent(
+                        productsItem = it.data,
+                        modifier = modifier,
+                        navigationToDetail = navigationToDetail,
+                    )
+                }
             }
 
             is State.Error -> {
@@ -71,7 +76,8 @@ fun WishlistContent(
             ProductItem(
                 title = product.product.title,
                 image = product.product.thumbnail,
-                desc = product.product.description,
+                price = product.product.price,
+                rating = product.product.rating,
                 modifier = Modifier
                     .clickable {
                         navigationToDetail(product.product.id)

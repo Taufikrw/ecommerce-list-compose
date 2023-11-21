@@ -5,4 +5,6 @@
     <string name="menu_profile">Profile</string>
     <string name="back">Back</string>
     <string name="search_product">Search here..</string>
+    <string name="price_tag">$ %d.0</string>
+    <string name="rating_tag">%s/5.0</string>
 </resources>
