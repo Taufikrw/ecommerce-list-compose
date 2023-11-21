@@ -3,7 +3,7 @@ package com.taufik.ecommercelist.ui.screen.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.taufik.ecommercelist.data.ProductRepository
-import com.taufik.ecommercelist.data.model.Profile
+import com.taufik.ecommercelist.data.local.Profile
 import com.taufik.ecommercelist.ui.common.State
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

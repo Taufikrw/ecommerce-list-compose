@@ -1,4 +1,4 @@
-package com.taufik.ecommercelist.ui.screen.home
+package com.taufik.ecommercelist.ui.screen.wishlist
 
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -21,11 +21,13 @@ import com.taufik.ecommercelist.ui.ViewModelFactory
 import com.taufik.ecommercelist.ui.common.State
 import com.taufik.ecommercelist.ui.component.CustomSearchBar
 import com.taufik.ecommercelist.ui.component.ProductItem
+import com.taufik.ecommercelist.ui.screen.home.HomeViewModel
+import com.taufik.ecommercelist.ui.screen.home.ProductContent
 
 @Composable
-fun HomeScreen(
+fun WishlistScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = viewModel(
+    viewModel: WishlistViewModel = viewModel(
         factory = ViewModelFactory.getInstance(LocalContext.current)
     ),
     navigationToDetail: (Int) -> Unit
@@ -34,15 +36,14 @@ fun HomeScreen(
         when (it) {
             is State.Loading -> {
                 LaunchedEffect(Unit) {
-                    viewModel.getProducts()
+                    viewModel.getWishlistProduct()
                 }
             }
 
             is State.Success -> {
-                ProductContent(
+                WishlistContent(
                     productsItem = it.data,
                     modifier = modifier,
-                    viewModel = viewModel,
                     navigationToDetail = navigationToDetail,
                 )
             }
@@ -54,39 +55,28 @@ fun HomeScreen(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ProductContent(
+fun WishlistContent(
     productsItem: List<Wishlist>,
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel,
     navigationToDetail: (Int) -> Unit
 ) {
-    val query = viewModel.query.value
-
-    Column {
-        CustomSearchBar(
-            query = query,
-            onChangeQuery = viewModel::search
-        )
-        LazyColumn(
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = modifier
-                .testTag("ProductList")
-        ) {
-            items(productsItem, key = { it.product.id }) { product ->
-                ProductItem(
-                    title = product.product.title,
-                    image = product.product.thumbnail,
-                    desc = product.product.description,
-                    modifier = Modifier
-                        .animateItemPlacement(tween(durationMillis = 100))
-                        .clickable {
-                            navigationToDetail(product.product.id)
-                        }
-                )
-            }
+    LazyColumn(
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier
+            .testTag("ProductList")
+    ) {
+        items(productsItem, key = { it.product.id }) { product ->
+            ProductItem(
+                title = product.product.title,
+                image = product.product.thumbnail,
+                desc = product.product.description,
+                modifier = Modifier
+                    .clickable {
+                        navigationToDetail(product.product.id)
+                    }
+            )
         }
     }
 }

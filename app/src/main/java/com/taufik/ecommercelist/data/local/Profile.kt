@@ -1,4 +1,4 @@
-package com.taufik.ecommercelist.data.model
+package com.taufik.ecommercelist.data.local
 
 data class Profile(
     val photo: Int,

@@ -28,6 +28,7 @@ import com.taufik.ecommercelist.ui.navigation.Screen
 import com.taufik.ecommercelist.ui.screen.detail.DetailScreen
 import com.taufik.ecommercelist.ui.screen.home.HomeScreen
 import com.taufik.ecommercelist.ui.screen.profile.ProfileScreen
+import com.taufik.ecommercelist.ui.screen.wishlist.WishlistScreen
 import com.taufik.ecommercelist.ui.theme.ECommerceListTheme
 
 @Composable
@@ -54,7 +55,11 @@ fun ECommerceApp(
                 )
             }
             composable(Screen.Wishlist.route) {
-                // WishlistScreen()
+                WishlistScreen(
+                    navigationToDetail = { id ->
+                        navController.navigate(Screen.DetailProduct.createRoute(id))
+                    }
+                )
             }
             composable(Screen.Profile.route) {
                 ProfileScreen()
@@ -69,6 +74,16 @@ fun ECommerceApp(
                     navigateBack = {
                         navController.navigateUp()
                     },
+                    navigateToWishlist = {
+                        navController.popBackStack()
+                        navController.navigate(Screen.Wishlist.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
                 )
             }
         }

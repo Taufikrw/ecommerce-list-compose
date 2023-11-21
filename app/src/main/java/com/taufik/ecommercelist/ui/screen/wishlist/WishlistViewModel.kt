@@ -1,46 +1,25 @@
-package com.taufik.ecommercelist.ui.screen.home
+package com.taufik.ecommercelist.ui.screen.wishlist
 
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.taufik.ecommercelist.data.ProductRepository
 import com.taufik.ecommercelist.data.local.Wishlist
-import com.taufik.ecommercelist.data.remote.response.ProductsItem
 import com.taufik.ecommercelist.ui.common.State
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import retrofit2.http.Query
 
-class HomeViewModel(
+class WishlistViewModel(
     private val repository: ProductRepository
 ): ViewModel() {
     private val _uiState: MutableStateFlow<State<List<Wishlist>>> = MutableStateFlow(State.Loading)
     val uiState: StateFlow<State<List<Wishlist>>>
         get() = _uiState
 
-    fun getProducts() {
+    fun getWishlistProduct() {
         viewModelScope.launch {
-            repository.getProducts()
-                .catch {
-                    _uiState.value = State.Error(it.message.toString())
-                }
-                .collect {
-                    _uiState.value = State.Success(it)
-                }
-        }
-    }
-
-    private val _query = mutableStateOf("")
-    val query: androidx.compose.runtime.State<String> get() = _query
-
-    fun search(query: String) {
-        _query.value = query
-        viewModelScope.launch {
-            repository.search(_query.value)
+            repository.getWishlistProducts()
                 .catch {
                     _uiState.value = State.Error(it.message.toString())
                 }
