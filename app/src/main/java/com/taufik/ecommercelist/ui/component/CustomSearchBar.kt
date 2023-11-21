@@ -43,7 +43,7 @@ fun CustomSearchBar(
         modifier = modifier
             .padding(
                 start = 16.dp,
-                bottom = 16.dp,
+                bottom = 8.dp,
                 end = 16.dp
             )
             .fillMaxWidth()

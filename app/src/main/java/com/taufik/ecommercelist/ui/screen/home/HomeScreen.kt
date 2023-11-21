@@ -1,16 +1,19 @@
 package com.taufik.ecommercelist.ui.screen.home
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -67,17 +70,21 @@ fun ProductContent(
 ) {
     val query = viewModel.query.value
 
-    Column {
-        CustomSearchBar(
-            query = query,
-            onChangeQuery = viewModel::search
-        )
+    Scaffold(
+        topBar = {
+            CustomSearchBar(
+                query = query,
+                onChangeQuery = viewModel::search
+            )
+        }
+    ) {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(160.dp),
             contentPadding = PaddingValues(16.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = modifier
+                .padding(it)
                 .testTag("ProductList")
         ) {
             items(productsItem, key = { it.product.id }) { product ->
