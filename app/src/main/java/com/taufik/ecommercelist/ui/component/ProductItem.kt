@@ -58,7 +58,7 @@ fun ProductItem(
             modifier = Modifier
                 .clip(MaterialTheme.shapes.large)
                 .fillMaxWidth()
-                .aspectRatio(3f / 2f)
+                .aspectRatio(4f / 5f)
         )
         Column(
             modifier = Modifier.padding(

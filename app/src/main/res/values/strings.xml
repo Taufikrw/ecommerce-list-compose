@@ -7,4 +7,9 @@
     <string name="search_product">Search here..</string>
     <string name="price_tag">$ %d.0</string>
     <string name="rating_tag">%s/5.0</string>
+    <string name="price">Price</string>
+    <string name="desc">Description</string>
+    <string name="brand">Brand</string>
+    <string name="stock">Stock</string>
+    <string name="detail_image">Detail Image</string>
 </resources>
