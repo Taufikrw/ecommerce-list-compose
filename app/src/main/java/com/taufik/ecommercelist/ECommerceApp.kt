@@ -5,6 +5,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -104,17 +107,17 @@ private fun BottomBar(
         val navigationItem = listOf(
             NavigationItem(
                 title = stringResource(id = R.string.menu_home),
-                icon = Icons.Default.Home,
+                icon = Icons.Rounded.Home,
                 screen = Screen.Home
             ),
             NavigationItem(
                 title = stringResource(id = R.string.menu_wishlist),
-                icon = Icons.Default.Favorite,
+                icon = Icons.Rounded.Favorite,
                 screen = Screen.Wishlist
             ),
             NavigationItem(
                 title = stringResource(id = R.string.menu_profile),
-                icon = Icons.Default.Person,
+                icon = Icons.Rounded.Person,
                 screen = Screen.Profile
             ),
         )

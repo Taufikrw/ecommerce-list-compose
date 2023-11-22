@@ -12,4 +12,5 @@
     <string name="brand">Brand</string>
     <string name="stock">Stock</string>
     <string name="detail_image">Detail Image</string>
+    <string name="empty_wishlist">Your Wishlist is Empty</string>
 </resources>
