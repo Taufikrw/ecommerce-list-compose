@@ -34,6 +34,7 @@ import com.taufik.ecommercelist.data.local.Wishlist
 import com.taufik.ecommercelist.ui.ViewModelFactory
 import com.taufik.ecommercelist.ui.common.State
 import com.taufik.ecommercelist.ui.component.CustomSearchBar
+import com.taufik.ecommercelist.ui.component.LoadingPage
 import com.taufik.ecommercelist.ui.component.ProductItem
 import com.taufik.ecommercelist.ui.screen.home.HomeViewModel
 import com.taufik.ecommercelist.ui.screen.home.ProductContent
@@ -49,6 +50,7 @@ fun WishlistScreen(
     viewModel.uiState.collectAsState(initial = State.Loading).value.let {
         when (it) {
             is State.Loading -> {
+                LoadingPage(isLoading = true)
                 LaunchedEffect(Unit) {
                     viewModel.getWishlistProduct()
                 }

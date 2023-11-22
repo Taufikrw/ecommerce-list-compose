@@ -23,6 +23,7 @@ class HomeViewModel(
         get() = _uiState
 
     fun getProducts() {
+        _uiState.value = State.Loading
         viewModelScope.launch {
             repository.getProducts()
                 .catch {
