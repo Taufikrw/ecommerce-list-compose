@@ -12,7 +12,6 @@ import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
 import com.taufik.ecommercelist.ui.navigation.Screen
 import com.taufik.ecommercelist.ui.theme.ECommerceListTheme
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

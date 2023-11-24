@@ -4,12 +4,9 @@ import android.util.Log
 import com.taufik.ecommercelist.data.local.Profile
 import com.taufik.ecommercelist.data.local.ProfileData
 import com.taufik.ecommercelist.data.local.Wishlist
-import com.taufik.ecommercelist.data.remote.response.ProductsItem
 import com.taufik.ecommercelist.data.remote.retrofit.ApiService
-import com.taufik.ecommercelist.ui.common.State
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch

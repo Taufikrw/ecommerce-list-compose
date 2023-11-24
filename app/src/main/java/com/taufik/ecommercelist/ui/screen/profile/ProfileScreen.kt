@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,7 +27,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.taufik.ecommercelist.ui.ViewModelFactory
 import com.taufik.ecommercelist.ui.common.State
 import com.taufik.ecommercelist.ui.component.LoadingPage
-import com.taufik.ecommercelist.ui.screen.detail.DetailContent
 
 @Composable
 fun ProfileScreen(
